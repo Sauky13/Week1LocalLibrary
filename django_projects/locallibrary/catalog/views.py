@@ -76,7 +76,6 @@ class LoanedBooksAllListView(PermissionRequiredMixin, generic.ListView):
 @login_required
 @permission_required('catalog.can_mark_returned', raise_exception=True)
 def renew_book_librarian(request, pk):
-    """View function for renewing a specific BookInstance by librarian."""
     book_instance = get_object_or_404(BookInstance, pk=pk)
 
     if request.method == 'POST':
@@ -111,7 +110,6 @@ class AuthorCreate(PermissionRequiredMixin, CreateView):
 
 class AuthorUpdate(PermissionRequiredMixin, UpdateView):
     model = Author
-    # Not recommended (potential security issue if more fields added)
     fields = '__all__'
     permission_required = 'catalog.change_author'
 
@@ -175,3 +173,30 @@ class BookInstanceListView(generic.ListView):
 
 class BookInstanceDetailView(generic.DetailView):
     model = BookInstance
+
+
+class GenreDetailView(generic.DetailView):
+    model = Genre
+
+
+class GenreListView(generic.ListView):
+    model = Genre
+    paginate_by = 10
+
+
+class GenreCreate(PermissionRequiredMixin, CreateView):
+    model = Genre
+    fields = ['name', ]
+    permission_required = 'catalog.add_genre'
+
+
+class GenreUpdate(PermissionRequiredMixin, UpdateView):
+    model = Genre
+    fields = ['name', ]
+    permission_required = 'catalog.change_genre'
+
+
+class GenreDelete(PermissionRequiredMixin, DeleteView):
+    model = Genre
+    success_url = reverse_lazy('genres')
+    permission_required = 'catalog.delete_genre'

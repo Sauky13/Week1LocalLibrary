@@ -23,6 +23,7 @@
     <li><a href="{% url 'bookinstances' %}">All book copies</a></li>
     <li><a href="{% url 'books' %}">All books</a></li>
     <li><a href="{% url 'authors' %}">All authors</a></li>
+   <li><a href="{% url 'genres' %}">All genres</a></li>
   </ul>
 
   <ul class="sidebar-nav">
@@ -48,6 +49,9 @@
    {% endif %}
    {% if perms.catalog.add_bookinstance %}
      <li><a href="{% url 'bookinstance-create' %}">Create BookInstance</a></li>
+   {% endif %}
+   {% if perms.catalog.add_genre %}
+     <li><a href="{% url 'genre-create' %}">Create genre</a></li>
    {% endif %}
    </ul>
    {% endif %}

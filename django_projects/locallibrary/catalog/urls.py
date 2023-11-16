@@ -38,3 +38,11 @@ urlpatterns += [
     path('bookinstance/<uuid:pk>/update/', views.BookInstanceUpdate.as_view(), name='bookinstance-update'),
     path('bookinstance/<uuid:pk>/delete/', views.BookInstanceDelete.as_view(), name='bookinstance-delete'),
 ]
+
+urlpatterns += [
+    path('genres/', views.GenreListView.as_view(), name='genres'),
+    path('genre/<int:pk>', views.GenreDetailView.as_view(), name='genre-detail'),
+    path('genre/create/', views.GenreCreate.as_view(), name='genre-create'),
+    path('genre/<int:pk>/update/', views.GenreUpdate.as_view(), name='genre-update'),
+    path('genre/<int:pk>/delete/', views.GenreDelete.as_view(), name='genre-delete'),
+]
